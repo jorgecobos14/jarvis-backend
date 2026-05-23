@@ -26,7 +26,7 @@ async def websocket_endpoint(websocket: WebSocket, device_id: str):
             msg = json.loads(data)
             conversations[device_id].append({"role": "user", "content": msg["text"]})
             response = client.chat.completions.create(
-                model="gpt-oss-120b",
+                model="openai/gpt-oss-120b",
                 messages=[{"role": "system", "content": SYSTEM_PROMPT}] + conversations[device_id][-20:],
                 max_tokens=1024
             )
