@@ -26,7 +26,7 @@ async def websocket_endpoint(websocket: WebSocket, device_id: str):
             msg = json.loads(data)
             conversations[device_id].append({"role": "user", "content": msg["text"]})
             response = client.chat.completions.create(
-                model="llama-3.3-70b-versatile",
+                model="deepseek-r1-distill-llama-70b",
                 messages=[{"role": "system", "content": SYSTEM_PROMPT}] + conversations[device_id][-20:],
                 max_tokens=1024
             )
